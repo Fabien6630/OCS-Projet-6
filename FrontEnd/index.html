@@ -7,26 +7,49 @@
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap" rel="stylesheet">
+	<script src="https://kit.fontawesome.com/098ba03527.js" crossorigin="anonymous"></script>
 	<meta name="description" content="">
 	<link rel="stylesheet" href="./assets/style.css">
 </head>
 <body>
+<div class="bandeau hidden">
+	<button class="bouton-edition">
+	<i class="fa-regular fa-pen-to-square"></i>
+	<span>Mode édition</span>
+	</button>
+	<button class="bouton-publier">publier les changements</button>
+</div>
+
+<div class="main-container">
 <header>
-	<h1>Sophie Bluel <span>Architecte d'inteérieur</span></h1>
+
+	<div class="header">
+	<h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
 	<nav>
 		<ul>
 			<li>projets</li>
 			<li>contact</li>
-			<li>login</li>
+			<li id="login"><a href="page-connexion.html">login</a></li>
+			<li id="logout" class="hidden"><a href="#">logout</a></li>
 			<li><img src="./assets/icons/instagram.png" alt="Instagram"></li>
 		</ul>
 	</nav>
+	</div>
 </header>
 <main>
 	<section id="introduction">
-		<figure>
-			<img src="./assets/images/sophie-bluel.png" alt="">
-		</figure>
+		<div>
+			<figure>
+				<img src="./assets/images/sophie-bluel.png" alt="">
+			</figure>
+			<a href="#modale1">
+				<button class="btn-modifier hidden">
+					<i id="icone1" class="fa-regular fa-pen-to-square hidden"></i>
+					<span id="modif1" class="hidden">modifier</span>
+				</button>
+			</a>		
+		</div>
+		
 		<article>
 			<h2>Designer d'espace</h2>
 			<p>Je raconte votre histoire, je valorise vos idées. Je vous accompagne de la conception à la livraison finale du chantier.</p>
@@ -35,9 +58,63 @@
 		</article>
 	</section>
 	<section id="portfolio">
+		<div class="row">
 		<h2>Mes Projets</h2>
+		<a href="#modale1">
+			<button class="bouton-modifier">
+				<i id="icone2" class="fa-regular fa-pen-to-square hidden"></i>
+				<span id="modif2" class="hidden">modifier</span>
+			</button>
+		</a>
+
+
+		<div id="background-modal" class="overlay hidden"></div>
+		
+		<div class="container-modal hidden" aria-hidden="true" role="dialog" aria-modal="false" aria-labelledby="titlemodal1">
+			<div class="bandeau-modal1 flex-end">
+				<button class="left-arrow hidden"><i class="fa-solid fa-arrow-left"></i></button> 
+				<button class="xmark"><i class="fa-solid fa-xmark"></i></button>
+			</div> 
+			
+			<div  class="modalhome">
+			
+					<h3 id="titlemodal1">Gallerie photo</h3>
+					<div class="gallery-modal">						
+						<i class="fa-solid fa-arrows-up-down-left-right"></i>
+					</div>					
+					<div class="trait"></div>
+					<button class="add-pic">Ajouter  une photo</button>
+					<button class="delete">Supprimer la galerie</button>
+			</div>
+
+			<div class="addwork hidden">			
+					<form id="MyForm" method="post">
+						<h3 id="titlemodal1">Ajout photo</h3>
+						<div class="container-photo">
+							<div id="img-preview"></div>
+							<i id="logo-img" class="fa-sharp fa-regular fa-image hidden"></i>
+							<div class="button-upload">							
+								<input type="file" id="choose-file" name="image" class="btn-add" accept="image/png, image/jpeg"></input>
+								<label class="choose-file" for="choose-file">+ Ajout photo</label>
+							</div>
+							<span>jpg, png : 4mo max</span>
+						</div>		
+						<div class="form-title">
+							<label for="select-title">Titre</label>
+							<input name="title" type="text" id="select-title">
+						</div>
+						<div class="form-category">
+							<label for="select-category">Catégorie</label>
+							<select name="category" id="select-category"></select>
+						</div>
+					</form>
+					<div class="trait"></div>
+					<button type="submit" class="valider" disabled>Valider</button>
+			</div>
+  		</div>
+		</div>
 		<ul class="filters">
-			<li class="filter"><a class="filter-link" href="#">Tous</a></li>			
+			<li class="filter  filter-active"><a class="filter-link" href="#">Tous</a></li>			
 		</ul>
 		<div class="gallery"></div>
 	</section>
@@ -63,6 +140,10 @@
 		</ul>
 	</nav>
 </footer>
+</div>
+
+
+
 <script src="./assets/script.js"></script>
 </body>
 </html>
