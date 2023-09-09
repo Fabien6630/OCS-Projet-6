@@ -271,6 +271,7 @@ li:hover {
 	background-color: #E8F1F6;
 	border-radius: 3px;
 	margin-bottom: 30px;
+	overflow: hidden;
   }
 
   #img-preview {
@@ -284,11 +285,11 @@ li:hover {
 	display: block;
   }
 
-  /*[type="file"] {
-	height: 0;  
-	width: 0;
-	overflow: hidden;
-  }*/
+  .select-img {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+  }
 
   .fa-sharp {
 	color: #CBD6DC;
@@ -303,12 +304,12 @@ li:hover {
 	opacity: 0;
 	overflow: hidden;
 	
+	
   }
 
   .choose-file {
 	text-align: center;
 	display: block;
-	
 	color: #306685;
 	background-color: #CBD6DC;
 	border: none;
@@ -316,6 +317,7 @@ li:hover {
 	margin-bottom: 10px;
 	padding-top: 10px;
 	padding-bottom: 10px;
+	cursor: pointer;
   }
 
   .button-upload {
@@ -385,6 +387,7 @@ li:hover {
 	font-family: Syne;
 	font-size: 14px;
 	font-weight: 700;
+	cursor: pointer;
 
 
 
@@ -395,6 +398,7 @@ li:hover {
 	background-color: white;
 	border: none;
 	margin-top: 20px;
+	cursor: pointer;
 }
 
 .gallery-modal {
@@ -457,6 +461,7 @@ height: 102.57px;
 .filter:hover {
 	background-color: #1D6154;
 	color: white;
+	cursor: pointer;
 }
 
 .filter-link:hover {
@@ -475,7 +480,12 @@ height: 102.57px;
 	font-size: 16px;
 	font-weight: 700;
 	color: inherit;
-	
+}
+
+.error {
+	color: red;
+	display: flex;
+    justify-content: center;
 }
 
 .gallery {
@@ -571,6 +581,7 @@ footer nav ul {
 	width: 179px;
 	height: 36px;
 	border: none;
+	cursor: pointer;
 }
 
 #form-connexion a {

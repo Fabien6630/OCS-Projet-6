@@ -92,12 +92,14 @@
 						<h3 id="titlemodal1">Ajout photo</h3>
 						<div class="container-photo">
 							<div id="img-preview"></div>
-							<i id="logo-img" class="fa-sharp fa-regular fa-image hidden"></i>
-							<div class="button-upload">							
-								<input type="file" id="choose-file" name="image" class="btn-add" accept="image/png, image/jpeg"></input>
-								<label class="choose-file" for="choose-file">+ Ajout photo</label>
+							<div class="select-img hidden">
+								<i id="logo-img" class="fa-sharp fa-regular fa-image hidden"></i>
+								<div class="button-upload">							
+									<input type="file" id="choose-file" name="image" class="btn-add" accept="image/png, image/jpeg"></input>
+									<label class="choose-file" for="choose-file">+ Ajout photo</label>
+								</div>
+								<span>jpg, png : 4mo max</span>
 							</div>
-							<span>jpg, png : 4mo max</span>
 						</div>		
 						<div class="form-title">
 							<label for="select-title">Titre</label>
@@ -107,14 +109,15 @@
 							<label for="select-category">Catégorie</label>
 							<select name="category" id="select-category"></select>
 						</div>
+						<span class="error hidden">Veuillez remplir tous les champs du formulaire</span>
 					</form>
 					<div class="trait"></div>
-					<button type="submit" class="valider" disabled>Valider</button>
+					<button type="submit" class="valider">Valider</button>
 			</div>
   		</div>
 		</div>
 		<ul class="filters">
-			<li class="filter  filter-active"><a class="filter-link" href="#">Tous</a></li>			
+			<li class="filter filter-active">Tous</li>			
 		</ul>
 		<div class="gallery"></div>
 	</section>

@@ -37,16 +37,16 @@ if (token) {
 }
 
 
-let works;
-let categories;
+let works; /*Déclaration variable works pour construire la galerie dynamiquement*/
+let categories; /*Déclaration variable categories pour réaliser les filtres par catégorie*/
 
-async function getworks() {
-    const response= await fetch ("http://localhost:5678/api/works")
+async function getworks() { /*fonction asynchrone pour récupérer les projets avec la méthode getworks*/
+    const response= await fetch ("http://localhost:5678/api/works") /*Tant que l'appel à fetch n'est pas terminé, l'exécution du code est en pause*/
     if (response.ok) {
         return response.json()
     }
 }
-async function buildworks() {
+async function buildworks() { /*fonction asynchrone pour stocker les projets avec la méthode buildworks*/
     works= await getworks()
     console.log (works)
     displayworks(works)
@@ -74,11 +74,7 @@ async function buildcategories() {
         
         let li= document.createElement('li')
         li.classList.add('filter') 
-        let a= document.createElement('a')
-        a.classList.add('filter-link')
-        a.innerText= category.name
-        a.href="#"
-        li.appendChild(a)
+        li.innerText= category.name
         filters.appendChild(li)
     }
 }
@@ -93,30 +89,25 @@ function filterbycategory (category, works) {
 buildcategories().then(()=>{
     const categories=document.querySelectorAll (".filters li")
     categories.forEach(category => category.addEventListener("click", (event)=>{
-        event.preventDefault()
         let categoryName=event.target.innerText
         let filteredWorks=filterbycategory(categoryName, works)
-        removeActiveClass(document.querySelectorAll(".filter-link"))
+        removeActiveClass(document.querySelectorAll(".filters li"))
+        console.log("ok"+event.target.value)
         event.target.classList.add("filter-active")
         console.log(filteredWorks)
         displayworks(filteredWorks)
     }))
-
 })
 
-/*document.querySelector(".xmark") .addEventListener ("click", (event)=>{
-    console.log("close modal1")
-    document.querySelector(".container-modal").classList.add("hidden")
-    document.querySelector(".overlay").classList.add("hidden")
-})*/
+/*Affichage de la galerie dynamqiue*/
 
- function displayworks(workstodisplay) {
+ function displayworks(workstodisplay) { /* fonction pour afficher les works dans la gallerie*/
     const gallery= document.querySelector(".gallery")
     gallery.innerHTML=""
     
-    for (work of workstodisplay) {
+    for (work of workstodisplay) { /*L'instruct° for...of crée une boucle qui fonctionne avec les objets itérables et qui appelle un mécanisme d'itération propre à l'objet utilisé et elle parcourt l'objet et les valeurs de ses différentes propriétés.*/
         
-        let figure= document.createElement('figure') /*création de la uildbalise figure*/
+        let figure= document.createElement('figure') /*création de la balise figure*/
         let img= document.createElement('img') /*création de la balise img*/
         img.src= work.imageUrl
         img.alt= work.title
@@ -220,8 +211,13 @@ function bindmodalevents (){
         document.querySelector(".bandeau-modal1").classList.remove("flex-end")
         document.querySelector(".left-arrow").classList.remove("hidden")
         document.getElementById("logo-img").classList.remove("hidden")
+        document.querySelector(".select-img").classList.remove("hidden")
 
             /*Ajout des images au formulaire (preview)*/
+
+            document.querySelector(".btn-add") .addEventListener ("click", ()=> {
+            document.querySelector(".select-img").classList.add("hidden")
+            })
     
         const chooseFile = document.getElementById("choose-file");
         const imgPreview = document.getElementById("img-preview");
@@ -258,13 +254,23 @@ function bindmodalevents (){
 
 
     document.querySelector(".valider") .addEventListener ("click", (event)=>{
-        event.preventDefault() 
-        /*if (document.getElementById("img-preview").value=="",
-        document.getElementById("select-title").value=="",
-        )*/
-        const myForm = document.getElementById("MyForm")
-        const formData = new FormData(myForm);
-        addwork(formData)
+        event.preventDefault()
+        
+        if (document.getElementById("img-preview").value!==""&&
+        document.getElementById("select-title").value!==""&&
+        document.getElementById("select-category").value!==""
+
+        ){
+            const myForm = document.getElementById("MyForm")
+            const formData = new FormData(myForm);
+            addwork(formData)
+            
+        }
+        else {
+            document.querySelector(".error").classList.remove("hidden")
+
+        }
+        
 
         
     })
